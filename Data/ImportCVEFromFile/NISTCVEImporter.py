@@ -20,9 +20,8 @@ import logging
 from pathlib import Path
 from datetime import datetime
 from typing import Dict
-from Database import  CVE
 from Database.DatabaseManager import init_db
-from Database.database import SessionLocal
+from Database import CVE, SessionLocal
 
 # Setup logging
 logging.basicConfig(

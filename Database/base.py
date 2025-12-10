@@ -11,7 +11,7 @@ import os
 # Database connection URL
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://cve_user:password@localhost:5432/cve_intelligence_db"
+    "postgresql://cve_user:cve_me@localhost:5432/cve_intelligence_db"
 )
 
 # Create engine (connection pool)

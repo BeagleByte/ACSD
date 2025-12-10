@@ -1,15 +1,10 @@
-from sqlalchemy import create_engine, Column, String, DateTime, Integer, Text, JSON, Boolean, Index, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
-import os
-from datetime import datetime
 import uuid
+from datetime import datetime
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://cve_user:password@localhost: 5432/cve_intelligence_db")
+from sqlalchemy import Column, String, DateTime, Integer, Text, JSON, Boolean
 
-engine = create_engine(DATABASE_URL, echo=False, pool_size=10, max_overflow=20)
-SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
-Base = declarative_base()
+from Database import Base
+
 
 class HackingNews(Base):
     """Hacking news from various sources"""
@@ -24,6 +19,6 @@ class HackingNews(Base):
     category = Column(String(50), index=True)
     relevance_score = Column(Integer, default=0)
     is_darknet = Column(Boolean, default=False, index=True)
-    metadata = Column(JSON, default=dict)
+    hk_metadata = Column(JSON, default=dict)
     created_at = Column(DateTime, default=datetime.utcnow, index=True)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

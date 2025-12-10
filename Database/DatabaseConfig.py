@@ -74,7 +74,7 @@ JOB_TIMEOUTS = {
 class DatabaseConfig(BaseModel):
     """Database configuration with validation"""
     url: str = Field(
-        default="postgresql://cve_user:password@localhost: 5432/cve_intelligence_db",
+        default="postgresql://cve_user:cve_me@localhost: 5432/cve_intelligence_db",
         description="PostgreSQL connection string"
     )
     pool_size: int = Field(

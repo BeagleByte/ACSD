@@ -76,7 +76,7 @@ class DarknetNewsAgent:
             # CHANGED: Use Ollama model
             model=Ollama(
                 model_id=model_name,
-                base_url="http://localhost:11434",
+                base_url="http://192.168.1.155:11434",
                 timeout=120
             ),
 

@@ -38,7 +38,7 @@ class POCHunterAgent:
     5. Stores validated results in database
     """
 
-    def __init__(self, model_name: str = "mistral"):
+    def __init__(self, model_name: str = "llama3.2:3b"):
         """
         Initialize POC hunter with Ollama + DuckDuckGo.
 
@@ -52,7 +52,7 @@ class POCHunterAgent:
             name="poc-hunter",
             model=Ollama(
                 model_id=model_name,
-                base_url="http://localhost:11434",
+                base_url="http://192.168.1.155:11434",
                 timeout=120
             ),
             tools=[WebsiteTools()],

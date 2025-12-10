@@ -1,15 +1,10 @@
-from sqlalchemy import create_engine, Column, String, DateTime, Integer, Text, JSON, Boolean, Index, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
-import os
-from datetime import datetime
 import uuid
+from datetime import datetime
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://cve_user:password@localhost: 5432/cve_intelligence_db")
+from sqlalchemy import Column, String, DateTime, Integer, Text, JSON
 
-engine = create_engine(DATABASE_URL, echo=False, pool_size=10, max_overflow=20)
-SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
-Base = declarative_base()
+from Database import Base
+
 
 class AgentRun(Base):
     """Track agent execution history"""
@@ -23,4 +18,4 @@ class AgentRun(Base):
     error_message = Column(Text, nullable=True)
     started_at = Column(DateTime, default=datetime.utcnow)
     completed_at = Column(DateTime, nullable=True)
-    metadata = Column(JSON, default=dict)
+    agent_run_metadata = Column(JSON, default=dict)

@@ -20,7 +20,7 @@ class CVE(Base):
     affected_products = Column(JSON, default=list)
     references = Column(JSON, default=list)
     status = Column(String(50), default="published", index=True)
-    metadata = Column(JSON, default=dict)
+    cve_metadata = Column(JSON, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow, index=True)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 

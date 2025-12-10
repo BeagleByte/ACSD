@@ -59,7 +59,7 @@ class HackingNewsAgent:
     Uses local Ollama model for categorization and relevance scoring.
     """
 
-    def __init__(self, model_name: str = "mistral"):
+    def __init__(self, model_name: str = "llama3.2:3b"):
         """
         Initialize hacking news agent with local Ollama model.
 
@@ -72,7 +72,7 @@ class HackingNewsAgent:
             # CHANGED: Use Ollama model
             model=Ollama(
                 model_id=model_name,
-                base_url="http://localhost:11434",
+                base_url="http://192.168.1.155:11434",
                 timeout=120
             ),
 

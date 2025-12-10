@@ -48,7 +48,7 @@ class POC(Base):
     found_at = Column(DateTime, default=datetime.utcnow, index=True)  # When we found this POC
     last_verified = Column(DateTime, nullable=True)  # Last time verified
 
-    metadata = Column(JSON, default=dict)  # Extra data (tags, author, etc.)
+    poc_metadata = Column(JSON, default=dict)  # Extra data (tags, author, etc.)
 
     created_at = Column(DateTime, default=datetime.utcnow, index=True)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

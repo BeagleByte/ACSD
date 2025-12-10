@@ -5,10 +5,15 @@ Run this ONCE before first use.
 """
 
 import logging
-from sqlalchemy import create_engine, inspect
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 import os
+import sys
+from pathlib import Path
+
+from sqlalchemy import create_engine, inspect
+
+# Add project root to Python path
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -17,14 +22,11 @@ logger = logging.getLogger(__name__)
 # Database connection
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://cve_user:password@localhost:5432/cve_intelligence_db"
+    "postgresql://cve_user:cve_me@localhost:5432/cve_intelligence_db"
 )
 
 # Create engine
 engine = create_engine(DATABASE_URL, echo=True)
-
-# Shared Base for all models
-Base = declarative_base()
 
 
 def check_tables_exist() -> dict:
@@ -59,10 +61,9 @@ def create_all_tables():
     Safe to run multiple times (won't recreate existing tables).
     """
     # Import all models (this registers them with Base)
-    from Database.CVE import CVE
-    from Database.HackingNews import HackingNews
-    from Database.AgentRun import AgentRun
-    from Database.AnalysisResult import AnalysisResult
+    from Database.base import Base, engine
+
+    # Import all models (this registers them with Base)
 
     logger.info("Creating database tables...")
 

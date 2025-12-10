@@ -33,7 +33,7 @@ class CVECollectorAgent:
     4. Insert only new CVEs
     """
 
-    def __init__(self, model_name: str = "mistral"):
+    def __init__(self, model_name: str = "llama3.2:3b"):
         """
         Initialize CVE collector agent with local Ollama model.
 
@@ -44,7 +44,7 @@ class CVECollectorAgent:
             name="cve-collector",
             model=Ollama(
                 model_id=model_name,
-                base_url="http://localhost:11434",
+                base_url="http://192.168.1.155:11434",
                 timeout=120
             ),
             tools=[WebsiteTools()],
